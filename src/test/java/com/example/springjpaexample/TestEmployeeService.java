@@ -101,6 +101,7 @@ public class TestEmployeeService {
                         .salary(newSalary)
                         .build()
         );
+        //we should use donothing() only with void methods.
         doNothing().when(validationService).validateEmployeeSalary(newSalary);
         employeeService.updateEmployeeSalary(employeeId, newSalary);
         verify(validationService).validateEmployeeSalary(newSalary);
@@ -119,7 +120,6 @@ public class TestEmployeeService {
         //create mocking for repository when using findbyid because this method is invoked
         //in the implementation of deleteById() method of JpaRepository.
         //doReturn(Optional.of(expectedEmployee)).when(employeeRepositoryMock).findById(empId);
-
         //doNothing().when(validationService.validateExistEmployee(empId));
         when(validationService.validateExistEmployee(empId)).thenReturn(expectedEmployee);
         //ASSERT
